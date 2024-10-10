@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+@Html.Action("PartialHead", "LayoutAdmin", "Admin")
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        @Html.Action("PartialSideBar", "LayoutAdmin", "Admin")
+        <!-- End Sidebar -->
+        @Html.Action("PartialNavbar", "LayoutAdmin", "Admin")
+        @RenderBody()
+        @Html.Action("PartialFooter", "LayoutAdmin", "Admin")
+
+    </div>
+
+    <!-- Custom template | don't include it in your project! -->
+    <!-- End Custom template -->
+    <!--   Core JS Files   -->
+    @Html.Action("PartialScript", "LayoutAdmin", "Admin")
+</body>
+</html>
