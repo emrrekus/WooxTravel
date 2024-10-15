@@ -1,0 +1,60 @@
+﻿@model List<WooxTravel.Entities.Destination>
+@{
+    ViewBag.Title = "DestinationList";
+    Layout = "~/Areas/Admin/Views/LayoutAdmin/Index.cshtml";
+}
+
+<h2>Destination List</h2>
+
+<div class="container">
+    <div class="page-inner">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Destination İşlemleri</div>
+                    </div>
+                    <div class="card-body">
+
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Destination Id</th>
+                                    <th scope="col">Country</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col">DayNight</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                    <th scope="col">See on the website </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.DestinationId</td>
+                                        <td>@item.Country</td>
+                                        <td>@item.City</td>
+                                        <td>@item.DayNight</td>
+                                        <td>@item.Price</td>
+                                        <td><a href="/Admin/Destination/DeleteDestination/@item.DestinationId" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="/Admin/Destination/UpdateDestination/@item.DestinationId" class="btn btn-success">Update</a></td>
+                                        <td><a href="#" class="btn btn-warning">Website</a></td>
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                            </table>
+                            <a href="/Admin/Destination/CreateDestination" class="btn btn-info">New Destination</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

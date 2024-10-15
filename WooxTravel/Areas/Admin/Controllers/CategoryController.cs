@@ -11,6 +11,9 @@ namespace WooxTravel.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         TravelContext context = new TravelContext();
+
+
+        [Authorize]
         public ActionResult CategoryList()
         {
             return View(context.Categories.ToList());

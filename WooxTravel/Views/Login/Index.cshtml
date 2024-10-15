@@ -1,0 +1,16 @@
+﻿@model WooxTravel.Entities.Admin
+@{
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+    <br /><br />
+    <div class="alert alert-primary"><h3>User Login Page</h3></div>
+    <label>Username</label>
+    @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+    <br />
+    <label>Password</label>
+    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+    <br />
+</div>
