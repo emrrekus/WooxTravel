@@ -4,22 +4,28 @@
 }
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<div class="container">
-    <br /><br />
-    <div class="alert alert-primary"><h3>New User Registration Page</h3></div>
-    <label>Name</label>
-    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-    <br />
-    <label>Surname</label>
-    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
-    <br />
-    <label>Email</label>
-    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
-    <br />
-    <label>Username</label>
-    @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
-    <br />
-    <label>Password</label>
-    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-    <br />
-</div>
+<form method="post">
+    <div class="container">
+        <br /><br />
+        <div class="alert alert-primary"><h3>New User Registration Page</h3></div>
+        <label>Name</label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        <br />
+        <label>Surname</label>
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+        <br />
+        <label>Email</label>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        <br />
+        <label>Username</label>
+        @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+        <br />
+        <label>Password</label>
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+        <br />
+    </div>
+    <button class="btn btn-primary"> Ekle</button>
+</form>
+
+
+
