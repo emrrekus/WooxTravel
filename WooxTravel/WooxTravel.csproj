@@ -53,6 +53,12 @@
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -164,6 +170,18 @@
     <Compile Include="Migrations\202410221744519_mig4.Designer.cs">
       <DependentUpon>202410221744519_mig4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410261501161_mig5.cs" />
+    <Compile Include="Migrations\202410261501161_mig5.Designer.cs">
+      <DependentUpon>202410261501161_mig5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410261718112_mig6.cs" />
+    <Compile Include="Migrations\202410261718112_mig6.Designer.cs">
+      <DependentUpon>202410261718112_mig6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410261719571_mig7.cs" />
+    <Compile Include="Migrations\202410261719571_mig7.Designer.cs">
+      <DependentUpon>202410261719571_mig7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -187,6 +205,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -732,6 +751,7 @@
     <Content Include="Views\Default\PartialBanner.cshtml" />
     <Content Include="Views\Default\PartialVisitCountry.cshtml" />
     <Content Include="Views\Default\PartialFooter.cshtml" />
+    <Content Include="Views\Default\DestinationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -778,6 +798,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410221744519_mig4.resx">
       <DependentUpon>202410221744519_mig4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410261501161_mig5.resx">
+      <DependentUpon>202410261501161_mig5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410261718112_mig6.resx">
+      <DependentUpon>202410261718112_mig6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410261719571_mig7.resx">
+      <DependentUpon>202410261719571_mig7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,4 +1,8 @@
-﻿@model List<WooxTravel.Entities.Destination>
+﻿
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<WooxTravel.Entities.Destination>
+
 <div class="visit-country">
     <div class="container">
         <div class="row">
@@ -29,24 +33,29 @@
                                                 <h4>@item.Country</h4>
                                                 <span>@item.City</span>
                                                 <div class="main-button">
-                                                    <a href="about.html">Explore More</a>
+                                                    <a href="DestinationDetails/@item.DestinationId">Daha Fazlası</a>
                                                 </div>
-                                                <p>@item.Description</p>
+                                                <p>
+                                                    @(item.Description.Length <=50 ? item.Description : item.Description.Substring(0,item.Description.LastIndexOf(" ") )) <a href="#">Devamını Oku...</a>
+                                                </p>
                                                 <ul class="info">
                                                     <li><i class="fa fa-home"></i>@item.DayNight Gün-@(item.DayNight-1) Gece</li>
                                                     <li><i class="fa fa-globe"></i>@item.Price</li>
                                                     <li><i class="fa fa-user"></i> @item.Capacity Kişi</li>
                                                 </ul>
-                                                <div class="text-button">
-                                                    <a href="about.html">Rehberi Görün<i class="fa fa-arrow-right"></i></a>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         }
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+                   {
+                       LiElementClasses = new List<string> { "page-link" },
 
+
+                   })
 
 
                     </div>

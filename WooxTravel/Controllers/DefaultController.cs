@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WooxTravel.Context;
 using WooxTravel.Entities;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WooxTravel.Controllers
 {
@@ -31,16 +33,32 @@ namespace WooxTravel.Controllers
         }
         public PartialViewResult PartialBanner()
         {
-            return PartialView();
+            var value = context.Destinations.Where(x => x.IsBanner == true).ToList();
+
+            return PartialView(value);
         }
-        public PartialViewResult PartialVisitCountry()
+        public PartialViewResult PartialVisitCountry(int page=1)
         {
-            var values = context.Destinations.ToList();
+            var values = context.Destinations.ToList().ToPagedList(page,4);
             return PartialView(values);
         }
         public PartialViewResult PartialFooter()
         {
             return PartialView();
+        }
+
+
+
+        public ActionResult DestinationDetails(int id)
+        {
+
+            var tours= context.Destinations.ToList();
+            var value = context.Destinations.Find(id);
+
+           ViewBag.tour = tours;
+
+            return View(value);
+
         }
     }
 }

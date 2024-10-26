@@ -768,6 +768,31 @@ Banner Style
   float: left;
   margin-right: 20px;
 }
+
+.main-caption h1 h2, .main-caption p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+.main-caption {
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding: 20px;
+    border-radius: 8px; /
+}
+
+.main-caption::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+    z-index: -1; 
+    border-radius: 8px;
+}
+    .main-caption h1, .main-caption p {
+        color: #fff;
+    }
+
 #section-1 .more-info h4 {
   text-align: left;
   font-size: 20px;
@@ -817,7 +842,7 @@ Banner Style
   border-color: #22b3c1;
   transition: 0.3s;
 }
-#section-1 .content-slider .slider #top-banner-1 {
+/*#section-1 .content-slider .slider #top-banner-1 {
   background: url('../images/banner-01.jpg') no-repeat center center;
   background-size: cover;
 }
@@ -832,7 +857,7 @@ Banner Style
 #section-1 .content-slider .slider #top-banner-4 {
   background: url('../images/banner-04.jpg') no-repeat center center;
   background-size: cover;
-}
+}*/
 #section-1 .content-slider nav {
   position: absolute;
   bottom: 30px;

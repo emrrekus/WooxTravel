@@ -1,0 +1,175 @@
+﻿@model WooxTravel.Entities.Destination
+
+@{
+    Layout = null;
+}
+
+
+
+
+
+@Html.Action("PartialHead", "Default")
+
+<body>
+
+    @Html.Action("PartialNavbar", "Default")
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="about-main-content" style="        background: url( @Model.ImageUrl ) no-repeat center center;
+        background-size: cover
+">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="content">
+                        <div class="blur-bg" style="background: url(@Model.ImageUrl) no-repeat center center; background-size: cover "></div>
+                        <h4>@Model.City Keşfedin </h4>
+                        <div class="line-dec"></div>
+                        <h2>Welcome To @Model.City</h2>
+                        <p>@Model.Description</p>
+                        <div class="main-button">
+                            <a href="#about">Daha Fazla Keşfet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <div class="cities-town">
+        <div class="container">
+            <div class="row">
+                <div class="slider-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>Diğer Avantajlı Turlar</h2>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="owl-cites-town owl-carousel">
+                                @foreach (var item in (List<WooxTravel.Entities.Destination>)ViewBag.tour)
+                                {
+                                    <div class="item">
+                                        <div class="thumb">
+                                            <img src="@item.ImageUrl" alt="">
+                                            <h4>@item.City</h4>
+                                        </div>
+                                    </div>
+                                }
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="more-about" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 align-self-center">
+                    <div class="left-image">
+                        <img src="@Model.ImageUrl" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h2>@Model.City ve Daha Fazlası</h2>
+                        <p>@Model.Description</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="info-item">
+                                <h4>@Model.DayNight Gün @(Model.DayNight-1) Gece</h4>
+                                <span>Tur Süresi</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="info-item">
+                                <h4>@Model.Capacity</h4>
+                                <span>Kapasite</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="info-item">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h4>@Model.City</h4>
+                                        <span>Şehir</span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h4>@Model.Price</h4>
+                                        <span>Ücret</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="main-button">
+                        <a href="#">Rezervasyon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weekly-offers">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading text-center">
+                        <h2>En Popüler Diğer Turlar</h2>
+                        <p>Sizi heyecanlandıracak diğer turlarımıza aşağıdan ulaşabilirsiniz</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="owl-weekly-offers owl-carousel">
+                        @foreach (var item in (List<WooxTravel.Entities.Destination>)ViewBag.tour)
+                        {
+                            <div class="item">
+                                <div class="thumb">
+                                    <img src="@item.ImageUrl" alt="">
+                                    <div class="text">
+                                        <h4>@item.City<br><span><i class="fa fa-users"></i> @item.Capacity Kapasite</span></h4>
+                                        <h6>@item.Price<br><span>/person</span></h6>
+                                        <div class="line-dec"></div>
+                                        <ul>
+                                            <li>Fırsat İçeriği</li>
+                                            <li><i class="fa fa-taxi"></i> @Model.DayNight Gün @(Model.DayNight-1) Gece</li>
+                                            <li><i class="fa fa-plane"></i> Uygun Ulaşım</li>
+                                            <li><i class="fa fa-building"></i> Vize Kolaylığı</li>
+                                        </ul>
+                                        <div class="main-button">
+                                            <a href="#">Rezervasyon</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    @Html.Action("PartialFooter", "Default")
+
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    @Html.Action("PartialScript", "Default")
+
+</body>
+
+</html>
