@@ -752,6 +752,8 @@
     <Content Include="Views\Default\PartialVisitCountry.cshtml" />
     <Content Include="Views\Default\PartialFooter.cshtml" />
     <Content Include="Views\Default\DestinationDetails.cshtml" />
+    <Content Include="Views\Default\PartialPopup.cshtml" />
+    <Content Include="Views\Default\PopupDeneme.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -47,6 +47,16 @@ namespace WooxTravel.Controllers
             return PartialView();
         }
 
+        public PartialViewResult PartialPopup()
+        {
+            return PartialView();
+        }
+
+        public ActionResult PopupDeneme()
+        {
+            return View();
+        }
+
 
 
         public ActionResult DestinationDetails(int id)
