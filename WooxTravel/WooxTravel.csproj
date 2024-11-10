@@ -135,6 +135,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChartController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CrediCartController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DestinationController.cs" />
     <Compile Include="Areas\Admin\Controllers\LayoutAdminController.cs" />
@@ -195,6 +197,14 @@
     <Compile Include="Migrations\202411100000209_mig10.cs" />
     <Compile Include="Migrations\202411100000209_mig10.Designer.cs">
       <DependentUpon>202411100000209_mig10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411102045262_mig11.cs" />
+    <Compile Include="Migrations\202411102045262_mig11.Designer.cs">
+      <DependentUpon>202411102045262_mig11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411102049210_mig12.cs" />
+    <Compile Include="Migrations\202411102049210_mig12.Designer.cs">
+      <DependentUpon>202411102049210_mig12.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -724,6 +734,10 @@
     <Content Include="Areas\Admin\Views\Category\UpdateCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Reservation\ReservationList.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LayoutAdmin\PartialDestinationNavbar.cshtml" />
+    <Content Include="Areas\Admin\Views\LayoutAdmin\PartialMessageNavbar.cshtml" />
+    <Content Include="Areas\Admin\Views\CrediCart\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Chart\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -836,6 +850,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411100000209_mig10.resx">
       <DependentUpon>202411100000209_mig10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411102045262_mig11.resx">
+      <DependentUpon>202411102045262_mig11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411102049210_mig12.resx">
+      <DependentUpon>202411102049210_mig12.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

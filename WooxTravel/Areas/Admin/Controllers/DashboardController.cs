@@ -7,6 +7,7 @@ using WooxTravel.Context;
 
 namespace WooxTravel.Areas.Admin.Controllers
 {
+
     public class DashboardController : Controller
     {
         TravelContext context = new TravelContext();
@@ -38,6 +39,23 @@ namespace WooxTravel.Areas.Admin.Controllers
             var people2ReservationCount = context.Reservations.Where(x => x.PersonCount == 2).Count();
             ViewBag.People2ReservationCount = people2ReservationCount;
 
+
+            var viyanaTourCount= context.Reservations.Where(x=> x.Tour=="Viyana").Count();
+            ViewBag.viyanaCount= viyanaTourCount;
+
+            var kölnTourCount = context.Reservations.Where(x => x.Tour == "Köln").Count();
+            ViewBag.kölnCount = kölnTourCount;
+
+
+            var maxCapacity = context.Destinations
+                             .OrderByDescending(d => d.Capacity).Select(d => d.City)
+                             .FirstOrDefault();
+            ViewBag.maxCapatiy = maxCapacity;
+
+
+            var maxDay= context.Destinations.OrderByDescending(x=> x.DayNight).Select(x => x.City).FirstOrDefault();
+
+            ViewBag.maxDay = maxDay;
             return View();
         }
     }

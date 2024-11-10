@@ -1,0 +1,69 @@
+﻿@model List<WooxTravel.Entities.Message>
+<li class="nav-item topbar-icon dropdown hidden-caret">
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       id="messageDropdown"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-haspopup="true"
+       aria-expanded="false">
+        <i class="fa fa-envelope"></i>
+    </a>
+    <ul class="dropdown-menu messages-notif-box animated fadeIn"
+        aria-labelledby="messageDropdown">
+
+        <li>
+            <div class="message-notif-scroll scrollbar-outer">
+                <div class="notif-center">
+                    @{
+                        string GetTimeAgo(DateTime sendDate)
+                        {
+                            var timeDifference = DateTime.Now - sendDate;
+
+                            if (timeDifference.TotalDays >= 1)
+                            {
+                                return $"{(int)timeDifference.TotalDays} gün önce";
+                            }
+                            else if (timeDifference.TotalHours >= 1)
+                            {
+                                return $"{(int)timeDifference.TotalHours} saat önce";
+                            }
+                            else if (timeDifference.TotalMinutes >= 1)
+                            {
+                                return $"{(int)timeDifference.TotalMinutes} dakika önce";
+                            }
+                            else
+                            {
+                                return "Az önce";
+                            }
+                        }
+                    }
+
+                    @foreach (var item in Model)
+                    {
+                        <a href="#">
+                            <div class="notif-img">
+                                <img src="/kaiadmin-lite-1.2.0/assets/img/jm_denis.jpg" alt="Img Profile" />
+                            </div>
+                            <div class="notif-content">
+                                <span class="subject">@item.Subject</span>
+                                <span class="block">
+                                    @(item.Content.Length > 10 ? item.Content.Substring(0, 20) + "..." : item.Content)
+                                </span>
+                                <span class="time">@GetTimeAgo(item.SendDate)</span>
+                            </div>
+                        </a>
+                    }
+
+
+
+
+                </div>
+        </li>
+        <li>
+            <a class="see-all" href="javascript:void(0);">
+                See all messages<i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+    </ul>
+</li>

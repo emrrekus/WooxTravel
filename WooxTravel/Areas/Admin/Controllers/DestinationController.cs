@@ -26,6 +26,7 @@ namespace WooxTravel.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult CreateDestination(Destination item)
         {
+            item.CreatedTime = DateTime.Now;
             context.Destinations.Add(item);
             context.SaveChanges();
 

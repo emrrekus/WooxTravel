@@ -20,6 +20,9 @@ namespace WooxTravel.Entities
         public bool IsBanner {  get; set; }
 
 
+        public DateTime CreatedTime { get; set; }
+
+
      
         
     }

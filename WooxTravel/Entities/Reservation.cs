@@ -19,6 +19,7 @@ namespace WooxTravel.Entities
         public int PersonCount { get; set; }
         public int ResarvationPrice { get; set; }
         public DateTime ReservastionDate { get; set; }
+        public DateTime CreatedTime { get; set; }
         public string Description { get; set; }
 
         public string Tour {  get; set; }

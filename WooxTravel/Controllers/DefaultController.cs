@@ -79,6 +79,7 @@ namespace WooxTravel.Controllers
         {
             try
             {
+                res.CreatedTime = DateTime.Now;
                 context.Reservations.Add(res);
                 context.SaveChanges();
                 return Json(new { success = true, message = "Rezervasyonunuz başarıyla oluşturuldu." });

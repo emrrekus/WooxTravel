@@ -13,6 +13,7 @@ namespace WooxTravel.Areas.Admin.Controllers
     {
         TravelContext context = new TravelContext();
 
+        [Authorize]
         public ActionResult ReservationList(int page = 1)
         {
 

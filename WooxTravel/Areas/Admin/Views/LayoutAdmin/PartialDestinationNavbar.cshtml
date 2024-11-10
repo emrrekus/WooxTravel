@@ -1,0 +1,63 @@
+﻿@model List<WooxTravel.Entities.Destination>
+<li class="nav-item topbar-icon dropdown hidden-caret">
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       id="notifDropdown"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-haspopup="true"
+       aria-expanded="false">
+        <i class="fa fa-bell"></i>
+        <span class="notification">4</span>
+    </a>
+    <ul class="dropdown-menu notif-box animated fadeIn"
+        aria-labelledby="notifDropdown">
+        <li>
+            <div class="dropdown-title">
+                You have 4 new notification
+            </div>
+        </li>
+        @{
+            string GetTimeAgo(DateTime sendDate)
+            {
+                var timeDifference = DateTime.Now - sendDate;
+
+                if (timeDifference.TotalDays >= 1)
+                {
+                    return $"{(int)timeDifference.TotalDays} gün önce";
+                }
+                else if (timeDifference.TotalHours >= 1)
+                {
+                    return $"{(int)timeDifference.TotalHours} saat önce";
+                }
+                else if (timeDifference.TotalMinutes >= 1)
+                {
+                    return $"{(int)timeDifference.TotalMinutes} dakika önce";
+                }
+                else
+                {
+                    return "Az önce";
+                }
+            }
+        }
+        <li>
+            <div class="notif-scroll scrollbar-outer">
+                <div class="notif-center">
+                    @foreach (var item in Model)
+                    {
+                        <a href="#">
+                            <div class="notif-icon notif-primary">
+                                <i class="fa fa-user-plus"></i>
+                            </div>
+                            <div class="notif-content">
+                                <span class="block"> @item.Title </span>
+                                <span class="time">@GetTimeAgo(item.CreatedTime)</span>
+                            </div>
+                        </a>
+                    }
+
+                </div>
+        </li>
+
+    </ul>
+</li>

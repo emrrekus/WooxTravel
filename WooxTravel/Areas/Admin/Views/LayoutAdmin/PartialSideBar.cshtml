@@ -1,4 +1,4 @@
-﻿﻿<div class="sidebar" data-background-color="dark">
+﻿<div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark">
             <a href="~/kaiadmin-lite-1.2.0/index.html" class="logo">
@@ -27,19 +27,19 @@
                     <a href="/Admin/Dashboard/Index/"
                        class="collapsed"
                        aria-expanded="false">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
+                        <i class="fas fa-cog"></i>
                     </span>
                     <h4 class="text-section">İşlemler</h4>
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#category">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-th-list"></i>
                         <p>Kategori</p>
                         <span class="caret"></span>
                     </a>
@@ -60,20 +60,20 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#destination">
-                        <i class="fas fa-road"></i>
-                        <p>Destinasyon</p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Turlar</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="destination">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="@Url.Action("DestinationList", "Destination")">
-                                    <span class="sub-item">Destinasyon Listesi</span>
+                                    <span class="sub-item">Tur Listesi</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="@Url.Action("CreateDestination", "Destination")">
-                                    <span class="sub-item">Destinasyon Ekle</span>
+                                    <span class="sub-item">Tur Ekle</span>
                                 </a>
                             </li>
                         </ul>
@@ -81,7 +81,7 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#reservation">
-                        <i class="fas fa-calendar"></i>
+                        <i class="fas fa-calendar-alt"></i>
                         <p>Rezervasyon</p>
                         <span class="caret"></span>
                     </a>
@@ -97,7 +97,7 @@
                 </li>
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
+                        <i class="fas fa-envelope"></i>
                     </span>
                     <h4 class="text-section">Mesajlar</h4>
                 </li>
@@ -119,7 +119,7 @@
                 </li>
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
+                        <i class="fas fa-chart-pie"></i>
                     </span>
                     <h4 class="text-section">Grafik ve Ödeme</h4>
                 </li>
@@ -127,15 +127,15 @@
                     <a href="#"
                        class="collapsed"
                        aria-expanded="false">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-chart-bar"></i>
                         <p>Grafikler</p>
                     </a>
-           
+                </li>
                 <li class="nav-item">
-                    <a href="#"
+                    <a href="/Admin/CrediCart/Index"
                        class="collapsed"
                        aria-expanded="false">
-                        <i class="fas fa-credit-card"></i>
+                        <i class="fas fa-wallet"></i>
                         <p>Kredi Kartı</p>
                     </a>
                 </li>

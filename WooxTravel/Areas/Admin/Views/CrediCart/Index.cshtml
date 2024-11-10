@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/LayoutAdmin/Index.cshtml";
+}
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .cc_payment_wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+          
+            margin: 20px auto;
+        }
+
+        .cc_payment_container {
+            width: 100%;
+            max-width: 450px;
+            margin: auto;
+        }
+
+        .cc_payment_card_preview {
+            background: linear-gradient(135deg, #0396FF, #0D47A1);
+            width: 100%;
+            height: 200px;
+            border-radius: 16px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .cc_payment_chip {
+            width: 45px;
+            height: 35px;
+            background: #ffd700;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .cc_payment_number {
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .cc_payment_card_details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .cc_payment_form_container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .cc_payment_form_group {
+            margin-bottom: 20px;
+        }
+
+        .cc_payment_label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .cc_payment_input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .cc_payment_input:focus {
+            outline: none;
+            border-color: #0396FF;
+        }
+
+        .cc_payment_row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cc_payment_row .cc_payment_form_group {
+            flex: 1;
+        }
+
+        .cc_payment_submit_btn {
+            width: 100%;
+            padding: 14px;
+            background: #0396FF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cc_payment_submit_btn:hover {
+            background: #0D47A1;
+        }
+
+        .cc_payment_detail_label {
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+
+ 
+    </style>
+
+    <div class="container">
+        <div class="cc_payment_wrapper">
+            <div class="cc_payment_container">
+                <div class="cc_payment_card_preview">
+                    <div class="cc_payment_chip"></div>
+                    <div class="cc_payment_number" id="cc_numberDisplay">•••• •••• •••• ••••</div>
+                    <div class="cc_payment_card_details">
+                        <div>
+                            <div class="cc_payment_detail_label">Kart Sahibi</div>
+                            <div id="cc_nameDisplay">AD SOYAD</div>
+                        </div>
+                        <div>
+                            <div class="cc_payment_detail_label">Son Kullanma</div>
+                            <div id="cc_expiryDisplay">MM/YY</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cc_payment_form_container">
+                    <form id="cc_creditCardForm">
+                        <div class="cc_payment_form_group">
+                            <label class="cc_payment_label">Kart Numarası</label>
+                            <input class="cc_payment_input"
+                                   type="text"
+                                   id="cc_cardNumber"
+                                   placeholder="1234 5678 9012 3456"
+                                   maxlength="19">
+                        </div>
+
+                        <div class="cc_payment_form_group">
+                            <label class="cc_payment_label">Kart Sahibi</label>
+                            <input class="cc_payment_input"
+                                   type="text"
+                                   id="cc_cardName"
+                                   placeholder="Ad Soyad">
+                        </div>
+
+                        <div class="cc_payment_row">
+                            <div class="cc_payment_form_group">
+                                <label class="cc_payment_label">Son Kullanma Tarihi</label>
+                                <input class="cc_payment_input"
+                                       type="text"
+                                       id="cc_expiry"
+                                       placeholder="MM/YY"
+                                       maxlength="5">
+                            </div>
+                            <div class="cc_payment_form_group">
+                                <label class="cc_payment_label">CVV</label>
+                                <input class="cc_payment_input"
+                                       type="text"
+                                       id="cc_cvv"
+                                       placeholder="123"
+                                       maxlength="3">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="cc_payment_submit_btn">Ödemeyi Tamamla</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Kart numarası formatlaması
+            const cardNumber = document.getElementById('cc_cardNumber');
+            cardNumber.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value) {
+                    value = value.match(/.{1,4}/g).join(' ');
+                }
+                e.target.value = value;
+                document.getElementById('cc_numberDisplay').textContent = value || '•••• •••• •••• ••••';
+            });
+
+            // Kart sahibi
+            const cardName = document.getElementById('cc_cardName');
+            cardName.addEventListener('input', (e) => {
+                const value = e.target.value.toUpperCase();
+                document.getElementById('cc_nameDisplay').textContent = value || 'AD SOYAD';
+            });
+
+            // Son kullanma tarihi
+            const expiry = document.getElementById('cc_expiry');
+            expiry.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.slice(0, 2) + '/' + value.slice(2);
+                }
+                e.target.value = value;
+                document.getElementById('cc_expiryDisplay').textContent = value || 'MM/YY';
+            });
+
+            // Form gönderimi
+            document.getElementById('cc_creditCardForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Burada ödeme işlemleri yapılabilir
+                console.log('Form submitted');
+            });
+        });
+    </script>
+
+

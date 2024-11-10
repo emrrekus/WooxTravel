@@ -12,6 +12,7 @@ namespace WooxTravel.Areas.Admin.Controllers
     public class ProfileController : Controller
     {
       TravelContext context=new TravelContext();
+        [Authorize]
         public ActionResult Index()
         {
             var a = Session["x"];
