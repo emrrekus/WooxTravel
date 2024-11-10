@@ -12,6 +12,7 @@
 
 <body>
 
+     @Html.Action("PartialPopup","Default")
     @Html.Action("PartialNavbar", "Default")
     <!-- ***** Main Banner Area Start ***** -->
     <div class="about-main-content" style="        background: url( @Model.ImageUrl ) no-repeat center center;
@@ -108,7 +109,7 @@
                     </div>
                    
                     <div class="main-button">
-                        <a href="#">Rezervasyon</a>
+                        <a href="#"  data-bs-toggle="modal" data-bs-target="#myModal">Rezervasyon</a>
                     </div>
                 </div>
             </div>
@@ -145,7 +146,7 @@
                                             <li><i class="fa fa-building"></i> Vize Kolaylığı</li>
                                         </ul>
                                         <div class="main-button">
-                                            <a href="#">Rezervasyon</a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">Rezervasyon</a>
                                         </div>
                                     </div>
                                 </div>

@@ -37,9 +37,9 @@ namespace WooxTravel.Controllers
 
             return PartialView(value);
         }
-        public PartialViewResult PartialVisitCountry(int page=1)
+        public PartialViewResult PartialVisitCountry(int page = 1)
         {
-            var values = context.Destinations.ToList().ToPagedList(page,4);
+            var values = context.Destinations.ToList().ToPagedList(page, 4);
             return PartialView(values);
         }
         public PartialViewResult PartialFooter()
@@ -49,12 +49,8 @@ namespace WooxTravel.Controllers
 
         public PartialViewResult PartialPopup()
         {
-            return PartialView();
-        }
-
-        public ActionResult PopupDeneme()
-        {
-            return View();
+            var value = context.Destinations.ToList();
+            return PartialView(value);
         }
 
 
@@ -62,12 +58,35 @@ namespace WooxTravel.Controllers
         public ActionResult DestinationDetails(int id)
         {
 
-            var tours= context.Destinations.ToList();
+            var tours = context.Destinations.ToList();
             var value = context.Destinations.Find(id);
 
-           ViewBag.tour = tours;
+            ViewBag.tour = tours;
 
             return View(value);
+
+        }
+
+
+        [HttpGet]
+        public ActionResult AddResarvation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddResarvation(Reservation res)
+        {
+            try
+            {
+                context.Reservations.Add(res);
+                context.SaveChanges();
+                return Json(new { success = true, message = "Rezervasyonunuz başarıyla oluşturuldu." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Rezervasyon oluşturulurken bir hata oluştu." });
+            }
 
         }
     }

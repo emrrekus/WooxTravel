@@ -1,30 +1,130 @@
-﻿
+﻿@model List<WooxTravel.Entities.Destination>
 
-
-<div class="container">
-    <h2>Modal Example</h2>
-    <!-- Trigger the modal with a button -->
-  
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+<div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-5 shadow-lg border-0">
+            <div class="modal-header  text-white">
+                <h5 class="modal-title" id="modalTitle">Rezervasyon Oluştur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form id="reservationForm" method="post" action="/Default/AddResarvation/">
+                <div class="modal-body" >
+                    <!-- Tur Seçimi -->
+                    <div class="mb-4">
+                        <label class="form-label text-dark">Tur Seçiniz</label>
+                        <select class="form-select form-select-lg custom-select" id="tourSelect" name="Tour" required>
+                            <option value="" data-price="0">Bir Tur Seçin</option>
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.City" data-price="@item.Price">@item.City</option>
+                            }
+                        </select>
+                    </div>
 
+                    <!-- Kişisel Bilgiler -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Ad</label>
+                            <input type="text" class="form-control form-control-lg shadow-sm" name="Name" required placeholder="Adınızı girin">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Soyad</label>
+                            <input type="text" class="form-control form-control-lg shadow-sm" name="Surname" required placeholder="Soyadınızı girin">
+                        </div>
+
+                        <!-- Telefon Numarası & Kişi Sayısı -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Telefon Numarası</label>
+                            <input type="text" class="form-control form-control-lg shadow-sm" name="Phone" required placeholder="Telefon numaranızı girin">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Kişi Sayısı</label>
+                            <input type="number" class="form-control form-control-lg shadow-sm" name="PersonCount" required placeholder="Kişi sayısını girin">
+                        </div>
+
+                        <!-- Rezervasyon Tarihi & Ücreti -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Rezervasyon Tarihi</label>
+                            <input type="date" class="form-control form-control-lg shadow-sm" name="ReservastionDate" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Rezervasyon Ücreti</label>
+                            <input type="text" class="form-control form-control-lg shadow-sm"  name="ResarvationPrice" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Açıklama -->
+                    <div class="mb-3">
+                        <label class="form-label">Açıklama</label>
+                        <textarea class="form-control form-control-lg shadow-sm" name="Description" rows="3" placeholder="Açıklamanızı buraya girin"></textarea>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary rounded-3" data-bs-dismiss="modal">Kapat</button>
+                    <button id="reservationCreate" type="submit" class="btn btn-success rounded-3 px-5 py-2" style="font-weight: bold; transition: background-color 0.3s, transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Oluştur</button>
+                </div>
+            </form>
         </div>
     </div>
-
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tourSelect = document.getElementById('tourSelect');
+        const personCountInput = document.querySelector('input[name="PersonCount"]');
+        const reservationFeeInput = document.querySelector('input[name="ResarvationPrice"]');
+
+        function calculateFee() {
+            const selectedOption = tourSelect.options[tourSelect.selectedIndex];
+            const tourPrice = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+            const personCount = parseInt(personCountInput.value) || 0;
+            const totalFee = tourPrice * personCount;
+            reservationFeeInput.value = totalFee;
+        }
+
+        tourSelect.addEventListener('change', calculateFee);
+        personCountInput.addEventListener('input', calculateFee);
+
+        const reservationForm = document.querySelector('form[action="/Default/AddResarvation/"]');
+
+        reservationForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(reservationForm);
+
+            fetch(reservationForm.action, {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: 'Başarılı!',
+                            text: data.message,
+                            icon: 'success',
+                            confirmButtonText: 'Tamam'
+                        }).then(() => {
+                            window.location.href = '/Default/Index';
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Hata!',
+                            text: data.message,
+                            icon: 'error',
+                            confirmButtonText: 'Tamam'
+                        });
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        title: 'Hata!',
+                        text: 'Bir hata oluştu. Lütfen tekrar deneyin.',
+                        icon: 'error',
+                        confirmButtonText: 'Tamam'
+                    });
+                });
+        });
+    });
+</script>

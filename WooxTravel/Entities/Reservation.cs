@@ -13,10 +13,14 @@ namespace WooxTravel.Entities
 
        
         public string Name { get; set; }
+        public string Surname { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public int PersonCount { get; set; }
+        public int ResarvationPrice { get; set; }
         public DateTime ReservastionDate { get; set; }
         public string Description { get; set; }
+
+        public string Tour {  get; set; }
     }
 }
