@@ -9,6 +9,7 @@ namespace WooxTravel.Areas.Admin.Controllers
     public class CrediCartController : Controller
     {
         // GET: Admin/CrediCart
+        [Authorize]
         public ActionResult Index()
         {
             return View();

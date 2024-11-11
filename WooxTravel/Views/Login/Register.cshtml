@@ -1,0 +1,20 @@
+﻿@model WooxTravel.Entities.Admin
+@{
+    Layout = null;
+}
+
+
+
+<form method="post"  action="@Url.Action("Register", "Login")">
+    <h1>Create Account</h1>
+
+    <span>or use your email for registration</span>
+    <input type="text" placeholder="Name" name="Name" />
+    <input type="text" placeholder="Surname" name="Surname" />
+    <input type="email" placeholder="Email" name="Email" />
+    <input type="text" placeholder="Username" name="Username" />
+    <input type="password" placeholder="Password" name="Password" />
+    <button>Sign Up</button>
+</form>
+
+

@@ -4,7 +4,7 @@
     Layout = "~/Areas/Admin/Views/LayoutAdmin/Index.cshtml";
 }
 
-<h2>Destination List</h2>
+<h2>Tur Listesi</h2>
 
 <div class="container">
     <div class="page-inner">
@@ -13,14 +13,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Destination İşlemleri</div>
+                        <div class="card-title">Tur İşlemleri</div>
                     </div>
                     <div class="card-body">
 
                         <table class="table mt-3">
                             <thead>
                                 <tr>
-                                    <th scope="col">Destination Id</th>
+                                    <th scope="col">Tur Id</th>
                                     <th scope="col">Country</th>
                                     <th scope="col">City</th>
                                     <th scope="col">DayNight</th>
@@ -41,7 +41,7 @@
                                         <td>@item.Price</td>
                                         <td><a href="/Admin/Destination/DeleteDestination/@item.DestinationId" class="btn btn-danger">Delete</a></td>
                                         <td><a href="/Admin/Destination/UpdateDestination/@item.DestinationId" class="btn btn-success">Update</a></td>
-                                        <td><a href="#" class="btn btn-warning">Website</a></td>
+                                        <td><a href="/Default/DestinationDetails/@item.DestinationId" class="btn btn-warning">Website</a></td>
                                     </tr>
 
                                 }
@@ -49,7 +49,7 @@
 
                             </tbody>
                             </table>
-                            <a href="/Admin/Destination/CreateDestination" class="btn btn-info">New Destination</a>
+                            <a href="/Admin/Destination/CreateDestination" class="btn btn-info">Yeni Tur</a>
                     </div>
                 </div>
 

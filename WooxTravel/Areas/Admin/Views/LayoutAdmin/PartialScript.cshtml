@@ -2,6 +2,9 @@
 <script src="/kaiadmin-lite-1.2.0/assets/js/core/jquery-3.7.1.min.js"></script>
 <script src="/kaiadmin-lite-1.2.0/assets/js/core/popper.min.js"></script>
 <script src="/kaiadmin-lite-1.2.0/assets/js/core/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- jQuery Scrollbar -->
 <script src="/kaiadmin-lite-1.2.0/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
@@ -11,29 +14,29 @@
 <script src="/kaiadmin-lite-1.2.0/assets/js/setting-demo2.js"></script>
 <script>
     $("#displayNotif").on("click", function () {
-            var placementFrom = $("#notify_placement_from option:selected").val();
-            var placementAlign = $("#notify_placement_align option:selected").val();
-            var state = $("#notify_state option:selected").val();
-            var style = $("#notify_style option:selected").val();
-            var content = {};
+        var placementFrom = $("#notify_placement_from option:selected").val();
+        var placementAlign = $("#notify_placement_align option:selected").val();
+        var state = $("#notify_state option:selected").val();
+        var style = $("#notify_style option:selected").val();
+        var content = {};
 
-            content.message =
-                'Turning standard Bootstrap alerts into "notify" like notifications';
-            content.title = "Bootstrap notify";
-            if (style == "withicon") {
-                content.icon = "fa fa-bell";
-            } else {
-                content.icon = "none";
-            }
-            content.url = "index.html";
-            content.target = "_blank";
+        content.message =
+            'Turning standard Bootstrap alerts into "notify" like notifications';
+        content.title = "Bootstrap notify";
+        if (style == "withicon") {
+            content.icon = "fa fa-bell";
+        } else {
+            content.icon = "none";
+        }
+        content.url = "index.html";
+        content.target = "_blank";
 
-            $.notify(content, {
-                type: state,
-                placement: {
-                    from: placementFrom,
-                    align: placementAlign,
-                },
-                time: 1000,
-            });
-        });</script>
+        $.notify(content, {
+            type: state,
+            placement: {
+                from: placementFrom,
+                align: placementAlign,
+            },
+            time: 1000,
+        });
+    });</script>

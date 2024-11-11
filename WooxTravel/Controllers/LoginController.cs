@@ -18,22 +18,47 @@ namespace WooxTravel.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult Index(Admin admin)
+        public ActionResult LoginUser()
         {
-            var values = context.Admins.FirstOrDefault(x => x.Username == admin.Username && x.Password == admin.Password);
-
-            if (values != null)
-            {
-                FormsAuthentication.SetAuthCookie(values.Username, false);
-                Session["x"] = values.Username;
-                return RedirectToAction("Index", "Profile", new { area="Admin" });
-            }
-            else
-            {
-                return View();
-            }
+            return View();
         }
+        [HttpPost]
+        public ActionResult LoginUser(Admin admin)
+        {
+            if (ModelState.IsValid) // Modelin geçerliliğini kontrol et
+            {
+                var values = context.Admins.FirstOrDefault(x => x.Username == admin.Username && x.Password == admin.Password);
+
+                if (values != null)
+                {
+                    FormsAuthentication.SetAuthCookie(values.Username, false);
+                    Session["x"] = values.Username;
+                    return RedirectToAction("Index", "Profile", new { area = "Admin" });
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Invalid credentials!";
+                    return View();
+                }
+            }
+
+            return View(admin);
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(Admin admin)
+        {
+            context.Admins.Add(admin);
+            context.SaveChanges();
+            return RedirectToAction("Index", "Login");
+
+        }
+
 
 
         public ActionResult LogOut()

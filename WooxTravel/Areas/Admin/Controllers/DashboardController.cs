@@ -12,6 +12,7 @@ namespace WooxTravel.Areas.Admin.Controllers
     {
         TravelContext context = new TravelContext();
 
+        [Authorize]
         public ActionResult Index()
         {
             var adminCount = context.Admins.ToList().Count();

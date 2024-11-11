@@ -1,4 +1,7 @@
-﻿@model List<WooxTravel.Entities.Message>
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<WooxTravel.Entities.Message>
+
 @{
     ViewBag.Title = "SendBox";
     Layout = "~/Areas/Admin/Views/LayoutAdmin/Index.cshtml";
@@ -7,9 +10,9 @@
 
 <h2>SendBox</h2>
 
+
 <div class="container">
     <div class="page-inner">
-
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -17,17 +20,15 @@
                         <div class="card-title">Giden Mesaj Sayfası</div>
                     </div>
                     <div class="card-body">
-
                         <table class="table mt-3">
                             <thead>
                                 <tr>
-                                    <th scope="col"># </th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Gönderici</th>
                                     <th scope="col">Konu</th>
                                     <th scope="col">Tarih</th>
                                     <th scope="col">Durum</th>
                                     <th scope="col">Mesajı Aç</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,8 +40,14 @@
                                         <td>@item.ReceiverMail</td>
                                         <td>@item.Subject</td>
                                         <td>@item.SendDate.ToShortDateString()</td>
-                                        <td>@item.IsRead</td>
-                                        <td><a href="#" class="btn btn-warning">Mesajı Aç</a></td>
+                                        <td>@(item.IsRead ? "Okundu" : "Okunmadı")</td>
+                                        <td>
+                                            <button class="btn btn-warning" data-toggle="modal" data-target="#messageModal"
+                                                    onclick="openMessageModal('@item.Subject', '@item.Content', '@item.SendDate.ToShortDateString()')">
+
+                                                Mesajı Aç
+                                            </button>
+                                        </td>
 
                                     </tr>
 
@@ -52,9 +59,62 @@
                         <a href="/Admin/Message/SendMessage" class="btn btn-info">Yeni Mesaj Gönderin</a>
                     </div>
                 </div>
-
             </div>
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("SendBox", new { page }), new PagedListRenderOptions
+{
+LiElementClasses = new List<string> { "page-link" },
 
+
+})
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="messageModalLabel">Mesaj Başlığı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Tarih:</strong> <span id="modalDate"></span></p>
+                <p><strong>İçerik:</strong></p>
+                <p id="modalContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="confirmCloseModal()">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openMessageModal(subject, content, date) {
+        document.getElementById("messageModalLabel").textContent = subject || 'Başlık Yok';
+        document.getElementById("modalContent").textContent = content || 'Bu mesajın içeriği yok.';
+        document.getElementById("modalDate").textContent = date;
+    }
+
+    function confirmCloseModal() {
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Mesaj Detayını Kapatmak İstediğine Emin Misin?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Hayır'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $('#messageModal').removeClass('show');
+                $('.modal-backdrop').remove();
+            }
+        });
+    }
+</script>
+

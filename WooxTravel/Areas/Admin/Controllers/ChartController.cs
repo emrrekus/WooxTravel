@@ -10,6 +10,8 @@ namespace WooxTravel.Areas.Admin.Controllers
     public class ChartController : Controller
     {
         TravelContext context = new TravelContext();
+
+        [Authorize]
         public ActionResult Index()
         {
             var destinations = context.Destinations

@@ -1,0 +1,17 @@
+﻿@model WooxTravel.Entities.Admin
+@{
+    Layout = null;
+}
+
+
+
+
+<form method="post" action="@Url.Action("LoginUser", "Login")">
+    <h1>Giriş Yap </h1>
+   <br />
+    <input type="text" placeholder="Username" name="Username"/>
+    <input type="password" placeholder="Password" name="Password"/>
+    <br />
+  
+    <button>Giriş Yap</button>
+</form>

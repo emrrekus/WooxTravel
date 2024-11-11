@@ -786,6 +786,8 @@
     <Content Include="Views\Default\DestinationDetails.cshtml" />
     <Content Include="Views\Default\PartialPopup.cshtml" />
     <Content Include="Views\Default\PopupDeneme.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Login\LoginUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
